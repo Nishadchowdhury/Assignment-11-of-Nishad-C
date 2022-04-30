@@ -1,4 +1,5 @@
 import React from 'react';
+import CardContainer from '../Cards/CardContainer';
 
 const Home = () => {
     return (
@@ -52,7 +53,11 @@ const Home = () => {
             </div>
 
             
-            
+            {/* card container */}
+
+            <CardContainer/>
+
+
 
         </div>
     );

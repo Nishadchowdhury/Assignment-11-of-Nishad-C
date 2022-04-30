@@ -1,5 +1,7 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import './App.css';
+import CreateWithEmailAndPass from "./Components/Authentication/CreateWithEmailAndPass";
+import EmailLogin from "./Components/Authentication/EmailLogin";
 import Home from "./Components/Home/Home";
 import NotFound from "./Components/NotFound/NotFound";
 import Footer from "./Components/Shared/Footer/Footer";
@@ -13,6 +15,10 @@ function App() {
       <Routes>
 
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<EmailLogin />} />
+        <Route path='/createAccount' element={<CreateWithEmailAndPass />} />
+
+
 
 
         <Route path='*' element={<NotFound/>} />
