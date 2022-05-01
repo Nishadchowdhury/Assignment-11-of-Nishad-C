@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleCard = ({ card }) => {
-    const [showInfo , setShowInfo] = useState(1);
+const SingleCard = ({ card, workFor , handler }) => {
+    const [showInfo, setShowInfo] = useState(1);
 
-    const { name, picture, about, price, quantity, supplierName } = card;
+    const [aboutMod, setAboutMod] = useState('');
+
+    const { name, picture, about, price, quantity, supplierName, _id } = card;
+
+    useEffect(() => {
+
+        if (about?.length > 100 && workFor === 'home') {
+            setAboutMod(about.slice(0, 100) + '...')
+        } else {
+            setAboutMod(about)
+        }
+
+    }, [about])
 
     const Background = picture;
 
@@ -12,23 +24,42 @@ const SingleCard = ({ card }) => {
 
 
     return (
-        <div>
-            <div className="flex justify-center items-center ">
-                <div  onPointerEnter={()=>setShowInfo(true)} onPointerLeave={()=>setShowInfo(true)} className=" h-96 flex flex-col bg-no-repeat md:flex-row md:max-w-xl rounded-lg shadow-lg bg-slate-300" /*  style={{backgroundImage: "url(" + Background + ")"}} */  >
-                   
-                    <div  className={ !showInfo ? "invisible" : 'visible'  + "p-6 flex flex-col justify-start relative "}>
-                        <h5 className="text-gray-900 text-xl font-medium mb-2">Card title</h5>
-                        <p className="text-gray-700 text-base mb-4">
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                        </p>
-                        <p className="text-gray-600 text-xs">Last updated 3 mins ago</p>
+        <div className="flex justify-center" >
+            <div className="rounded-lg shadow-lg bg-white max-w-sm">
 
+                <img className="rounded-t-lg" src={picture} alt="" />
 
-                        <Link to="/login" className=" flex justify-center items-center h-10 absolute bottom-0 w-[200px] mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</Link>
+                <div className="p-1">
+                    <h5 className="text-gray-900 text-xl font-medium mb-2">{name}</h5>
+                    <p className="text-gray-700 text-base mb-4">
+                        {aboutMod}
+                    </p>
+                    <div className=''>
+                        <h1> <span className='text-blue-500 uppercase mt-' >  per unit cost: </span>  ${price}</h1>
+                        <h1> <span className='text-blue-500 uppercase mt-' >  Total: </span>  {quantity} unites left.</h1>
+                        <h1> <span className='text-blue-500 uppercase mt-' >  Provider: </span>  {supplierName}</h1>
+
                     </div>
-
-
-
+                    
+                    <div className='flex justify-center ' >
+                        {workFor === 'home' ?
+                        <Link
+                            to={`inventory/${_id}`}
+                            className="inline-block w-full text-center px-6 py-2.5 mt-4 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                            data-mdb-ripple="true"
+                            data-mdb-ripple-color="light"
+                        >
+                            Update
+                        </Link> : <button 
+                            onClick={() => handler(10)}
+                            to={`inventory/${_id}`}
+                            className="inline-block w-full text-center px-6 py-2.5 mt-4 bg-blue-600 text-white font-medium  leading-tight  rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                            data-mdb-ripple="true"
+                            data-mdb-ripple-color="light"
+                        >
+                            Deliver a unit
+                        </button> }
+                    </div>
                 </div>
             </div>
         </div>

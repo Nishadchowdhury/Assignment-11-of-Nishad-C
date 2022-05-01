@@ -8,7 +8,7 @@ const Home = () => {
 
 
 
-            <div className="carousel slide relative" data-bs-ride="carousel">
+            <div className="carousel slide relative hidden" data-bs-ride="carousel">
                 <div className="carousel-inner relative w-full overflow-hidden">
                     <div className="carousel-item active relative float-left w-full">
                         <img

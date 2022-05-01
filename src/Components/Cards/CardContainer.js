@@ -7,7 +7,7 @@ const CardContainer = () => {
 
     useEffect(() => {
 
-        fetch('data.json')
+        fetch('http://localhost:5000/allCarsHomePage')
             .then(res => res.json())
             .then(data => {
                 setCards(data)
@@ -19,9 +19,9 @@ const CardContainer = () => {
     return (
         <div>
 
-            <div>
+            <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 p-4' >
             {
-                cards.slice(0,1).map(card => <SingleCard key={card._id} card={card} />)
+                cards.map(card => <SingleCard key={card._id} workFor={'home'} card={card} />)
             }
             </div>
 
