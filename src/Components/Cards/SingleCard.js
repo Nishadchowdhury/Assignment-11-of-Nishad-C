@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleCard = ({ card, workFor , handler }) => {
+const SingleCard = ({ card, workFor, handler }) => {
     const [showInfo, setShowInfo] = useState(1);
 
     const [aboutMod, setAboutMod] = useState('');
@@ -24,8 +24,12 @@ const SingleCard = ({ card, workFor , handler }) => {
 
 
     return (
-        <div className="flex justify-center" >
-            <div className="rounded-lg shadow-lg bg-white max-w-sm">
+        <div className="flex justify-center " >
+            <div className= {`rounded-lg shadow-lg bg-white max-w-sm border-2 p-1 relative ${workFor === 'home' && "h-[500px] " } `} >
+
+                {quantity === 0 && <div className='absolute left-1 w-24 text-center rounded-tl-lg bg-red-600 py-1 px-1 text-lg text-white ' >Sold</div>
+
+                }
 
                 <img className="rounded-t-lg" src={picture} alt="" />
 
@@ -35,30 +39,31 @@ const SingleCard = ({ card, workFor , handler }) => {
                         {aboutMod}
                     </p>
                     <div className=''>
-                        <h1> <span className='text-blue-500 uppercase mt-' >  per unit cost: </span>  ${price}</h1>
-                        <h1> <span className='text-blue-500 uppercase mt-' >  Total: </span>  {quantity} unites left.</h1>
-                        <h1> <span className='text-blue-500 uppercase mt-' >  Provider: </span>  {supplierName}</h1>
+                        <h1> <span className='text-blue-500 uppercase ' >  per unit cost: </span>  ${price}</h1>
+                        <h1> <span className='text-blue-500 uppercase ' >  Total: </span>  {quantity} unites left.</h1>
+                        <h1> <span className='text-blue-500 uppercase ' >  Provider: </span>  {supplierName}</h1>
+                       { workFor ==='update' && <h1> <span className='text-blue-500 uppercase text-red-500' >  Product Id: </span>  {_id}</h1>}
 
                     </div>
-                    
-                    <div className='flex justify-center ' >
+
+                    <div className={`flex justify-center bottom-2 w-[91%] ${workFor === 'home' && "absolute"} `} >
                         {workFor === 'home' ?
-                        <Link
-                            to={`inventory/${_id}`}
-                            className="inline-block w-full text-center px-6 py-2.5 mt-4 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                            data-mdb-ripple="true"
-                            data-mdb-ripple-color="light"
-                        >
-                            Update
-                        </Link> : <button 
-                            onClick={() => handler(10)}
-                            to={`inventory/${_id}`}
-                            className="inline-block w-full text-center px-6 py-2.5 mt-4 bg-blue-600 text-white font-medium  leading-tight  rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                            data-mdb-ripple="true"
-                            data-mdb-ripple-color="light"
-                        >
-                            Deliver a unit
-                        </button> }
+                            <Link
+                                to={`inventory/${_id}`}
+                                className="inline-block  text-center px-6 py-2.5 mt-4 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                            >
+                                Update
+                            </Link> : <button
+                                onClick={() => handler(1)}
+                                to={`inventory/${_id}`}
+                                className="inline-block  text-center px-6 py-2.5 mt-4 bg-blue-600 text-white font-medium  leading-tight  rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                            >
+                                Deliver a unit
+                            </button>}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import './App.css';
 import CreateWithEmailAndPass from "./Components/Authentication/CreateWithEmailAndPass";
 import EmailLogin from "./Components/Authentication/EmailLogin";
@@ -7,28 +8,44 @@ import InventoryUpdate from "./Components/Inventory/InventoryUpdate";
 import NotFound from "./Components/NotFound/NotFound";
 import Footer from "./Components/Shared/Footer/Footer";
 import Header from "./Components/Shared/Header/Header";
+import 'react-toastify/dist/ReactToastify.css';
+import Inventory from "./Components/Inventory/Inventory";
+import AddItem from "./Components/AddItem/AddItem";
+
 
 function App() {
   return (
     <>
-      <Header/>
+      <Header />
 
       <Routes>
 
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<EmailLogin />} />
         <Route path='/createAccount' element={<CreateWithEmailAndPass />} />
+        <Route path='/inventory' element={<Inventory />} />
         <Route path='/inventory/:id' element={<InventoryUpdate />} />
+        <Route path='/addItem' element={<AddItem />} />
 
 
 
 
 
-        <Route path='*' element={<NotFound/>} />
+        <Route path='*' element={<NotFound />} />
 
       </Routes>
-
-      <Footer/>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <Footer />
     </>
   );
 }
