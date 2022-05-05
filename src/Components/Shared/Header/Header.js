@@ -59,7 +59,7 @@ const Header = () => {
                             }
 
                             {user && <li className="nav-item p-2">
-                                <div className="nav-link text-white" href="#">Manage Inventory</div>
+                                <Link to="/inventory" className="nav-link text-white" href="#">Manage Inventory</Link>
                             </li>}
 
                             {user && <li className="nav-item p-2">

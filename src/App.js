@@ -11,6 +11,7 @@ import Header from "./Components/Shared/Header/Header";
 import 'react-toastify/dist/ReactToastify.css';
 import Inventory from "./Components/Inventory/Inventory";
 import AddItem from "./Components/AddItem/AddItem";
+import RequireAuth from "./Components/Authentication/RequireAuth/RequireAuth";
 
 
 function App() {
@@ -23,9 +24,25 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<EmailLogin />} />
         <Route path='/createAccount' element={<CreateWithEmailAndPass />} />
-        <Route path='/inventory' element={<Inventory />} />
-        <Route path='/inventory/:id' element={<InventoryUpdate />} />
-        <Route path='/addItem' element={<AddItem />} />
+
+
+        <Route path='/inventory' element={
+          <RequireAuth>
+            <Inventory />
+          </RequireAuth>} />
+
+
+        <Route path='/inventory/:id' element={
+          <RequireAuth>
+            <InventoryUpdate />
+          </RequireAuth>
+        } />
+
+        <Route path='/addItem' element={
+          <RequireAuth>
+            <AddItem />
+          </RequireAuth>
+        } />
 
 
 
@@ -46,7 +63,7 @@ function App() {
         pauseOnHover
       />
       <Footer />
-      
+
     </>
   );
 }
