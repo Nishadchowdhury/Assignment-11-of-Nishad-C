@@ -20,9 +20,9 @@ const CardContainer = () => {
         <div>
 
             <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 p-4' >
-            {
-                cards.map(card => <SingleCard key={card._id} workFor={'home'} card={card} />)
-            }
+                {
+                    cards.map(card => <SingleCard key={card._id} workFor={'home'} card={card} />)
+                }
             </div>
 
         </div>

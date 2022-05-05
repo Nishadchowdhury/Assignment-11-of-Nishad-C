@@ -104,7 +104,7 @@ const InventoryUpdate = () => {
 
                         <div className="flex justify-center">
                             <div className="mb-3 xl:w-96">
-                                <label for="exampleNumber0" className="form-label inline-block mb-2 text-gray-700">Import more </label>
+                                <label htmlFor="exampleNumber0" className="form-label inline-block mb-2 text-gray-700">Import more </label>
                                 <input
                                     required
                                     name='inputQuantity'
@@ -142,6 +142,7 @@ const InventoryUpdate = () => {
                                     //  onClick={handleUpdate}
                                     data-mdb-ripple="true"
                                     data-mdb-ripple-color="light"
+                                    data-mdb-ripple-duration="5s"
                                     className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">ADD More</button>
                             </div>
                         </div>
@@ -151,7 +152,7 @@ const InventoryUpdate = () => {
 
             </div>
 
-            <div className='' ><SingleCard card={car} workFor={'update'} handler={handleDeliver}  ></SingleCard></div>
+            <div className='' ><SingleCard card={car} workhtmlFor={'update'} handler={handleDeliver}  ></SingleCard></div>
 
 
         </div>

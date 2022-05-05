@@ -1,30 +1,60 @@
-import React from 'react';
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase.init';
 
 const EmailLogin = () => {
 
-    const handleSubmit = event => {
+    const [email, setEmail] = useState('');
+
+    const [
+        signInWithEmailAndPassword,
+        userOfSignIn,
+
+        loadingOfSignIn,
+
+        errorOfSignIn,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const [user] = useAuthState(auth);
+
+    console.log(user);
+
+    const handleSubmitLogin = event => {
         event.preventDefault();
+
+        const password = event.target.password.value;
+        const email = event.target.email.value;
+
+
+        signInWithEmailAndPassword(email, password);
+
+    }
+
+    const handleForgetPassword = e => {
+        console.log('re set password ');
+
     }
 
 
     return (
+
         <div>
             <section className="h-screen">
                 <div className="container px-6 py-12 h-full">
                     <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
                         <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                                className="w-full"
-                            />
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" alt=''
+                                className="w-full" />
                         </div>
                         <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmitLogin}>
                                 {/* <!--  Email input -->  */}
                                 <div className="mb-6">
                                     <input
                                         type="text"
+                                        name="email"
+                                        onBlur={(e) => setEmail(e.target.value)}
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         placeholder="Email address"
                                     />
@@ -34,28 +64,16 @@ const EmailLogin = () => {
                                 <div className="mb-6">
                                     <input
                                         type="password"
+                                        name="password"
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         placeholder="Password"
                                     />
                                 </div>
 
                                 <div className="flex justify-between items-center mb-6">
-                                    <div className="form-group form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                            id="exampleCheck3"
-                                            checked
-                                        />
-                                        <label className="form-check-label inline-block text-gray-800" for="exampleCheck2"
-                                        >Remember me</label
-                                        >
-                                    </div>
-                                    <a
-                                        href="#!"
-                                        className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                                    >Forgot password?</a
-                                    >
+                                    <button
+                                        onClick={handleForgetPassword}
+                                        className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out">Forgot password?</button>
                                 </div>
 
 
