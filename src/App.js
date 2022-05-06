@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Inventory from "./Components/Inventory/Inventory";
 import AddItem from "./Components/AddItem/AddItem";
 import RequireAuth from "./Components/Authentication/RequireAuth/RequireAuth";
+import MyItems from "./Components/MyItems/MyItems";
 
 
 function App() {
@@ -44,8 +45,11 @@ function App() {
           </RequireAuth>
         } />
 
-
-
+        <Route path='/myItems' element={
+          <RequireAuth>
+            <MyItems />
+          </RequireAuth>
+        } />
 
 
         <Route path='*' element={<NotFound />} />

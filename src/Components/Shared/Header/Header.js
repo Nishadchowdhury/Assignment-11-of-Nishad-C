@@ -7,7 +7,8 @@ import Spinner from '../Spinner/Spinner';
 
 const Header = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
+
 
 
     return (
@@ -49,6 +50,21 @@ const Header = () => {
 
                         <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
 
+
+
+                            {user && <li className="nav-item p-2">
+                                <Link to="/inventory" className="nav-link text-white" href="#">Manage Inventory</Link>
+                            </li>}
+
+                            {user && <li className="nav-item p-2">
+                                <Link to='/AddItem' className="nav-link text-white" href="#">Add Item</Link>
+                            </li>}
+
+                            {user && <li className="nav-item p-2">
+                                <Link to="/myItems" className="nav-link text-white" href="#">My items</Link>
+                            </li>}
+
+                            
                             {loading ? <Spinner></Spinner> : !user ? <li className="nav-item p-2">
                                 <Link to='login' className="nav-link text-white" href="#">Login</Link>
                             </li>
@@ -57,19 +73,6 @@ const Header = () => {
                                     <button onClick={() => signOut(auth)} >Log Out</button>
                                 </li>
                             }
-
-                            {user && <li className="nav-item p-2">
-                                <Link to="/inventory" className="nav-link text-white" href="#">Manage Inventory</Link>
-                            </li>}
-
-                            {user && <li className="nav-item p-2">
-                                <div className="nav-link text-white" href="#">Add Item</div>
-                            </li>}
-
-                            {user && <li className="nav-item p-2">
-                                <div className="nav-link text-white" href="#">My items</div>
-                            </li>}
-
 
 
                             {/* <li className="nav-item p-2">
@@ -86,7 +89,7 @@ const Header = () => {
 
                 <div className="flex items-center relative">
                     {/* <!-- Icon --> */}
-                  
+
                     <div className="dropdown relative">
                         <div
                             className="text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4 dropdown-toggle hidden-arrow flex items-center"
@@ -116,7 +119,7 @@ const Header = () => {
                             >99+</span
                             >
                         </div>
-                      
+
                     </div>
                     <div className="dropdown relative ml-2 ">
                         <div
@@ -129,12 +132,12 @@ const Header = () => {
                         >
                             <img
                                 className='h-6 rounded-full'
-                                src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+                                src={ (user &&  user.photoURL) ?  user.photoURL : "https://i.ibb.co/r0Qv1tk/notUser.png"  }
                                 alt=""
                                 loading="lazy"
                             />
                         </div>
-                    
+
                     </div>
                 </div>
                 {/* <!-- Right elements --> */}

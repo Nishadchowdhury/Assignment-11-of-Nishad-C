@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useCreateUserWithEmailAndPassword , useUpdateProfile  } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth } from '../../firebase.init';
 import Spinner from '../Shared/Spinner/Spinner';
@@ -9,6 +10,7 @@ const CreateWithEmailAndPass = () => {
     const [check, setCheck] = useState(false)
     const [checkStyle, setCheckStyle] = useState(false);
     const [Error, setError] = useState('')
+    const navigate = useNavigate();
 
     const [
         createUserWithEmailAndPassword,
@@ -17,14 +19,16 @@ const CreateWithEmailAndPass = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
+    console.log(user);
+
     useEffect(() => {
-        if(error ){
-            if(error?.message.includes('Firebase: Error (auth/internal-error)')){
+        if (error) {
+            if (error?.message.includes('Firebase: Error (auth/internal-error)')) {
                 setError('there is having some problem please try agin')
             }
-            else(setError(error?.message ))
+            else (setError(error?.message))
         }
-    },[error])
+    }, [error])
 
 
 
@@ -57,28 +61,34 @@ const CreateWithEmailAndPass = () => {
             return setError('password dose not match');
 
         }
-        
+
         if (!/^(?=.*[0-9]).*$/.test(password)) {
             return setError('password must contain a Number');
 
         }
-        if (password.length < 6 ) {
+        if (password.length < 6) {
             return setError('password is too short');
 
         }
 
-        if (password &&  email) {
-            createUserWithEmailAndPassword(email,password);
+        if (password && email) {
+            createUserWithEmailAndPassword(email, password);
         }
-        
+
+
         e.target.reset();
         setError('');
-        
-        if(!error){
-            toast(`User Created`)
-        }
+
     }
 
+    useEffect(() => {
+        if (user) {
+            toast(`User Created`)
+            setTimeout(() => {
+                navigate('/')
+            }, 500)
+        }
+    }, [user])
 
     return (
 
@@ -92,10 +102,10 @@ const CreateWithEmailAndPass = () => {
 
 
 
-                    <div className='relative flex  justify-center items-center' > <div   className={` absolute ${ !loading && 'hidden'}`} ><Spinner /></div>
-                        <form onSubmit={handleCreateAccount} className={`${loading  && 'opacity-0'} transition ease-in-out ` } >
+                    <div className='relative flex  justify-center items-center' > <div className={` absolute ${!loading && 'hidden'}`} ><Spinner /></div>
+                        <form onSubmit={handleCreateAccount} className={`${loading && 'opacity-0'} transition ease-in-out `} >
 
-                          
+
 
 
                             <div className="form-group mb-6">

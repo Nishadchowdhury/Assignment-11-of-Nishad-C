@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 const SingleCard = ({ card, workFor, handler }) => {
     const [showInfo, setShowInfo] = useState(1);
 
+    const blue = 'blue';
+    const red = 'red';
+
     const [aboutMod, setAboutMod] = useState('');
 
     const { name, picture, about, price, quantity, supplierName, _id } = card;
@@ -25,7 +28,7 @@ const SingleCard = ({ card, workFor, handler }) => {
 
     return (
         <div className="flex justify-center " >
-            <div className= {`rounded-lg shadow-lg bg-white max-w-sm border-2 p-1 relative ${workFor === 'home' && "h-[500px] " } `} >
+            <div className={`rounded-lg shadow-lg bg-white max-w-sm border-2 p-1 relative ${workFor === 'home' && "h-[500px] "} `} >
 
                 {quantity === 0 && <div className='absolute left-1 w-24 text-center rounded-tl-lg bg-red-600 py-1 px-1 text-lg text-white ' >Sold</div>
 
@@ -42,7 +45,7 @@ const SingleCard = ({ card, workFor, handler }) => {
                         <h1> <span className='text-blue-500 uppercase ' >  per unit cost: </span>  ${price}</h1>
                         <h1> <span className='text-blue-500 uppercase ' >  Total: </span>  {quantity} unites left.</h1>
                         <h1> <span className='text-blue-500 uppercase ' >  Provider: </span>  {supplierName}</h1>
-                       { workFor ==='update' && <h1> <span className='text-blue-500 uppercase text-red-500' >  Product Id: </span>  {_id}</h1>}
+                        {workFor === 'update' && <h1> <span className='text-blue-500 uppercase text-red-500' >  Product Id: </span>  {_id}</h1>}
 
                     </div>
 
@@ -58,12 +61,14 @@ const SingleCard = ({ card, workFor, handler }) => {
                             </Link> : <button
                                 onClick={() => handler(1)}
                                 to={`inventory/${_id}`}
-                                className="inline-block  text-center px-6 py-2.5 mt-4 bg-blue-600 text-white font-medium  leading-tight  rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                className={`inline-block  text-center px-6 py-2.5 mt-4 
+                                bg-${  workFor === 'myCars' ? red : blue }-600 focus:bg-${  workFor === 'myCars' ? red : blue }-700 active:bg-${  workFor === 'myCars' ? red : blue }-800 hover:bg-${  workFor === 'myCars' ? red : blue }-700 
+                                text-white font-medium  leading-tight  rounded shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out`}
                                 data-mdb-ripple="true"
                                 data-mdb-ripple-color="light"
                                 data-mdb-ripple-duration="5s"
                             >
-                                Deliver a unit
+                                {workFor === 'myCars' ? "Delete" :"Deliver a unit" }
                             </button>}
                     </div>
                 </div>

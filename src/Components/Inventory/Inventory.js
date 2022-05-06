@@ -43,6 +43,7 @@ const Inventory = () => {
 
     return (
         <div>
+            
             <div className='flex justify-end pr-8 pt-8' >
                 <Link
                     to='/AddItem'
@@ -103,8 +104,17 @@ const Inventory = () => {
                                                 <td className="border-r-2  text-sm text-gray-900 font-light lg:px-6 px-2 py-4 whitespace-nowrap">
                                                     {car.supplierName}
                                                 </td>
-                                                <td className="border-r-2  text-sm text-gray-900 font-light lg:px-3 w-20 whitespace-nowrap">
-                                                    <button onClick={() => HandleDeleteItems(car._id)} > <img className='w-20' src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png" alt="" /> </button>
+                                                <td className="border-r-2 flex flex-col items-center text-sm text-gray-900 font-light lg:px-3 w-20 whitespace-nowrap">
+                                                    <div className='mt-5' >
+                                                        <button onClick={() => HandleDeleteItems(car._id)} > <img className='w-20' src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png" alt="" /> </button>
+
+                                                    </div>
+
+                                                    <div>
+
+                                                        <Link to={`./${car._id}`} type="button" class=" inline-block px-3 py-2 bg-blue-600 text-white font-sm text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</Link>
+                                                    </div>
+
                                                 </td>
                                             </tr>
 

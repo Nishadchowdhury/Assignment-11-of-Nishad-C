@@ -25,7 +25,7 @@ const InventoryUpdate = () => {
         console.log(inputValue);
 
         const { quantity, ...rest } = car;
-        const newQuantity = quantity + inputValue;
+        const newQuantity = +quantity + inputValue;
 
         const newCar = { quantity: newQuantity, ...rest };
 
@@ -87,7 +87,7 @@ const InventoryUpdate = () => {
     };
 
     return (
-        <div className='flex justify-evenly items-center lg:flex-row flex-col-reverse h-screen'>
+        <div className='flex justify-evenly items-center lg:mb-0 mb-6 lg:flex-row flex-col-reverse h-screen mt-5 lg:mt-0  '>
 
             <div className='bg-red-200 lg:w-auto w-11/12 mx-3 p-3 rounded-lg'>
 
@@ -152,7 +152,7 @@ const InventoryUpdate = () => {
 
             </div>
 
-            <div className='' ><SingleCard card={car} workhtmlFor={'update'} handler={handleDeliver}  ></SingleCard></div>
+            <div className='lg:mb-0 mb-5' ><SingleCard card={car} workhtmlFor={'update'} handler={handleDeliver}  ></SingleCard></div>
 
 
         </div>
