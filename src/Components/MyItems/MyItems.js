@@ -35,6 +35,8 @@ const MyItems = () => {
             axios.delete(`http://localhost:5000/delete/${id}`)
                 .then(res => {
                     console.log(res);
+                    const restCar = myCars.filter(car => car._Id != id);
+                    setCars(restCar)
                 })
 
         }
