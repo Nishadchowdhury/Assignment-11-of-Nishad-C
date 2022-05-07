@@ -13,6 +13,7 @@ import Inventory from "./Components/Inventory/Inventory";
 import AddItem from "./Components/AddItem/AddItem";
 import RequireAuth from "./Components/Authentication/RequireAuth/RequireAuth";
 import MyItems from "./Components/MyItems/MyItems";
+import Blogs from "./Components/ExtraInfo/Blogs";
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<EmailLogin />} />
         <Route path='/createAccount' element={<CreateWithEmailAndPass />} />
+
+        <Route path='/blogs' element={<Blogs />} />
 
 
         <Route path='/inventory' element={

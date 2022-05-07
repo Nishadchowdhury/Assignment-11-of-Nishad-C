@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { auth } from '../../../firebase.init';
 import Spinner from '../Spinner/Spinner';
 
@@ -9,11 +9,15 @@ const Header = () => {
 
     const [user, loading] = useAuthState(auth);
 
+    const params = useLocation().pathname;
+
+    console.log(params);
+
 
 
     return (
         <nav
-            className="relative w-full flex flex-wrap items-center lg:justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light"
+            className={`relative w-full flex flex-wrap items-center lg:justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light ${params === "/inventory" ? 'hidden' : 'none' } `}
         >
             <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                 <button
@@ -64,7 +68,7 @@ const Header = () => {
                                 <Link to="/myItems" className="nav-link text-white" href="#">My items</Link>
                             </li>}
 
-                            
+
                             {loading ? <Spinner></Spinner> : !user ? <li className="nav-item p-2">
                                 <Link to='login' className="nav-link text-white" href="#">Login</Link>
                             </li>
@@ -75,9 +79,10 @@ const Header = () => {
                             }
 
 
-                            {/* <li className="nav-item p-2">
-                                <div className="nav-link text-white" href="#">abc</div>
-                            </li> */}
+                            <li className="nav-item p-2">
+                                <Link to="/blogs" className="nav-link text-white" href="#">Blogs</Link>
+                            </li>
+
 
                         </ul>
 
@@ -132,7 +137,7 @@ const Header = () => {
                         >
                             <img
                                 className='h-6 rounded-full'
-                                src={ (user &&  user.photoURL) ?  user.photoURL : "https://i.ibb.co/r0Qv1tk/notUser.png"  }
+                                src={(user && user.photoURL) ? user.photoURL : "https://i.ibb.co/r0Qv1tk/notUser.png"}
                                 alt=""
                                 loading="lazy"
                             />

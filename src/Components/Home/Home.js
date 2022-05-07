@@ -11,7 +11,7 @@ const Home = () => {
 
 
 
-            <div className="carousel slide relative mb-3 shadow-xl" data-bs-ride="carousel">
+            <div className="carousel slide relative mb-3 shadow-xl hover:group-placeholder-shown:" data-bs-ride="carousel">
                 <div className="carousel-inner relative w-full overflow-hidden">
                     <div className="carousel-item active relative float-left w-full">
                         <img

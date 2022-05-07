@@ -72,12 +72,14 @@ const InventoryUpdate = () => {
 
             const newCar = { quantity: newQuantity, ...rest };
 
-            console.log(newCar);
 
             const url = (`http://localhost:5000/Update/${id}`);
 
-            const { data } = await axios.put(url, newCar);
-            console.log(data);
+             await axios.put(url, newCar)
+            .then(res => {
+                console.log(res);
+                toast('Delivery Complete')
+            })
             setCar(newCar);
         }
         else {

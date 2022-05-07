@@ -33,6 +33,8 @@ const Inventory = () => {
             axios.delete(`http://localhost:5000/delete/${id}`)
                 .then(res => {
                     console.log(res);
+                    const restData = allData.filter(data => data._id !== id)
+                    setAllData(restData)
                 })
 
         }
@@ -42,10 +44,20 @@ const Inventory = () => {
     let n = 0;
 
     return (
-        <div>
-            
-            <div className='flex justify-end pr-8 pt-8' >
+        <div className='mb-7' >
+
+            <div className='flex justify-between px-8 pt-8' >
                 <Link
+                    to='/'
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="inline-block px-6 py-2.5 border-2 
+                    border-blue-600 bg-blue-300 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-700 active:shadow-lg transition duration-150 ease-in-out hover:text-white"
+                >
+                    <p className='flex items-center gap-2' ><span>Home</span> <img className='w-7 inline-block' src="https://i.ibb.co/k1m5pJK/Pngegg.png" alt="" /> </p>
+                </Link>
+                
+                  <Link
                     to='/AddItem'
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
@@ -71,7 +83,7 @@ const Inventory = () => {
                                         <th scope="col" className="text-sm font-medium text-gray-900 lg:px-6 px-2 py-4 text-left">
                                             Price
                                         </th>
-                                        <th scope="col" className="text-sm font-medium text-gray-900  px-2 text-left">
+                                        <th scope="col" className="text-sm font-medium text-gray-900  text-left">
                                             Quantity
                                         </th>
                                         <th scope="col" className="text-sm font-medium text-gray-900 lg:px-6 px-2 py-4 text-left">
@@ -92,15 +104,20 @@ const Inventory = () => {
 
                                                 <td className=" border-r-2   lg:px-6 px-2 py-4 lg:w-52  "> <img className='rounded-tl-xl rounded-br-xl' src={car.picture} alt="" /> </td>
 
-                                                <td className="border-r-2  px-2 w-7 text-sm text-gray-900 font-light ">
+                                                <td className="border-r-2  lg:px-2 lg:w-7 lg:text-sm text-xs text-gray-900 font-light ">
                                                     $ {car.price}
                                                 </td>
                                                 <td className={`border-r-2 w-2 text-sm text-center text-gray-900 font-light ${car.quantity === 0 && "text-red-500 font-extrabold"} `}>
                                                     {car.quantity}
                                                 </td>
-                                                <td className="border-r-2 text-sm text-gray-900 font-light lg:px-6 px-2 py-4 ">
+                                                <td className="border-r-2 text-sm lg:block hidden text-gray-900 font-light lg:px-6 px-2 py-4 ">
                                                     {car.about}
                                                 </td>
+
+                                                <td className="border-r-2 text-sm lg:hidden text-gray-900 font-light lg:px-6 px-1 py-4 ">
+                                                    {car.about.slice(0, 100)} <br /> ... <br /> <br /> <Link to={`./${car._id}`} type="button" className=" inline-block px-3 py-2 bg-blue-600 text-white font-sm text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">more</Link>
+                                                </td>
+
                                                 <td className="border-r-2  text-sm text-gray-900 font-light lg:px-6 px-2 py-4 whitespace-nowrap">
                                                     {car.supplierName}
                                                 </td>
@@ -112,7 +129,7 @@ const Inventory = () => {
 
                                                     <div>
 
-                                                        <Link to={`./${car._id}`} type="button" class=" inline-block px-3 py-2 bg-blue-600 text-white font-sm text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</Link>
+                                                        <Link to={`./${car._id}`} type="button" className=" inline-block px-3 py-2 bg-blue-600 text-white font-sm text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update</Link>
                                                     </div>
 
                                                 </td>
