@@ -20,5 +20,14 @@ https://hidden-shore-66811.herokuapp.com/
 * in the buttom side of home page we put a link of dhaka's inventory mobile app links . 
 
 
+* stackOverflow question link what is ask 
+
+https://stackoverflow.com/questions/72162882/display-loading-spinner-during-call-when-using-fetch-api
+
+`if by chance they delete my question thats's why i put a link of my question's Screenshot link`
+
+
 
 i used -> tailwind-elements , tailwind , firebase , react-toastify , axios etc in this site .
+
+https://i.ibb.co/4tzHjBz/Fetch-loading.png
