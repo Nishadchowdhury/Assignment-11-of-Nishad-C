@@ -39,7 +39,7 @@ const Header = () => {
         }
         getCars();
 
-    }, [loading]);
+    }, [user]);
 
 
 
