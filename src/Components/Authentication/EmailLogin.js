@@ -6,39 +6,45 @@ import SignWithSocial from './SignWithSocial';
 import { toast } from 'react-toastify';
 import Spinner from '../Shared/Spinner/Spinner';
 import axios from 'axios';
+import useJwtToken from '../../Hooks/useJwtToken';
 
 const EmailLogin = () => {
 
     const [email, setEmail] = useState('');
 
     const [error, setError] = useState('');
+    
+    const [user] = useAuthState(auth);
 
+    const [token] = useJwtToken(user);
+    
     const location = useLocation();
 
     const navigate = useNavigate();
-
+    
     const from = location.state?.from?.pathname || "/";
-
-
+    
+    
 
     const [sendPasswordResetEmail, sending, errorReset] = useSendPasswordResetEmail(auth);
 
 
-
-
+    
+    
     const [
         signInWithEmailAndPassword,
         userOfSignIn,
 
         loadingOfSignIn,
-
+        
         errorOfSignIn,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [user] = useAuthState(auth);
+    
+    if (token) {
+        navigate(from, { replace: true })
 
-    // if (user) {
-    // }
+    }
 
     const handleSubmitLogin = async event => {
         event.preventDefault();
@@ -49,9 +55,6 @@ const EmailLogin = () => {
 
         await signInWithEmailAndPassword(email, password);
 
-        const { data } = await axios.post('http://localhost:5000/login', {email});
-        localStorage.setItem('accessToken', data.accessToken)
-        navigate(from, { replace: true })
 
     }
 

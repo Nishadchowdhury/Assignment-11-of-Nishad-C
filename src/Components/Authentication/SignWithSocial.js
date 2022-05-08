@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useSignInWithFacebook } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
+import useJwtToken from '../../Hooks/useJwtToken';
 
 const SignWithSocial = () => {
 
-    const [error , setError] = useState('');
+
+    const [error, setError] = useState('');
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+
+    const navigate = useNavigate();
 
     const [signInWithFacebook, user, loading, errorFb] = useSignInWithFacebook(auth);
+
+    const [token] = useJwtToken(user)
 
     const handleFbLogin = e => {
         console.log('login with fb');
@@ -14,21 +25,25 @@ const SignWithSocial = () => {
         signInWithFacebook();
     }
 
+    if (token) {
+        navigate(from, { replace: true })
+    }
+
     useEffect(() => {
-        if(errorFb){
+        if (errorFb) {
             setError(errorFb?.message)
             console.log(errorFb?.message);
         }
-        if(!errorFb){
+        if (!errorFb) {
             setError('');
         }
     }, [errorFb])
-    
+
 
 
     return (
         <div>
-                 { error && <p className='text-center text-red-500 mb-5' >{error}</p>}
+            {error && <p className='text-center text-red-500 mb-5' >{error}</p>}
             <button
                 className="px-7 py-3 text-white bg-[#3b5998]  font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
                 onClick={handleFbLogin}

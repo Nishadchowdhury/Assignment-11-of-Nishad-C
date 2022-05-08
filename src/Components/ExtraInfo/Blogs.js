@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Blogs = () => {
     return (
         <div>
-            <div className='flex justify-center my-3' >
+            <div className='flex justify-center my-3'>
                 <Link
                     to='/'
                     data-mdb-ripple="true"
@@ -36,17 +36,29 @@ const Blogs = () => {
               focus:outline-none
             " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
                                 aria-controls="collapseOne5">
-                                Accordion Item #1
+                                Difference between javascript and nodejs
                             </button>
                         </h2>
-                        <div id="collapseOne5" className="accordion-collapse collapse show" aria-labelledby="headingOne5">
-                            <div className="accordion-body py-4 px-5">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default,
-                                until the collapse plugin adds the appropriate classes that we use to style each
-                                element. These classes control the overall appearance, as well as the showing and
-                                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                our default variables. It's also worth noting that just about any HTML can go within
-                                the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <div id="collapseOne5" className="accordion-collapse collapse flex lg:flex-row flex-col " aria-labelledby="headingOne5">
+                            <div className="accordion-body py-2 border-[1px] rounded-xl  px-3 m-2">
+                                <strong>JavaScript</strong> <br />
+                                js is a lightweight , interpreted scripting programming language .
+                                it's use in clint-side for scripting .
+                                js is a simple programming language , that could be run in any web browser <br />
+                                 with any of javascript engine .
+                                there is lot's of variety in js engine like <br />
+                                <b> Firefox's Spider Monkey</b>, <b>Safari's JavaScript Core</b>, and  <b>Google Chrome <strong>V8</strong> </b>.
+                                Javascript is capable enough to add HTML and play with the DOM. 
+
+                            </div>
+                            <div className='flex items-center justify-center text-blue-500 font-bold' >vs</div>
+                            <div className="accordion-body py-2 border-[1px] rounded-xl  px-3 m-2">
+                                <strong>Node.js</strong> <br />
+                                node.js it's a Open source platform and a runtime environment. for executing js code outside of a browser . <br />
+                                it's made by  Google Chrome V8 engine and thats creator's some extra c++ code . <br />
+                                It needs libraries to easily accessed from JavaScript programming to make it more Efficient and useful.
+                                Node.js only supports the V8 engine cause it's made with <b>V8</b> , which is exclusive to Google Chrome. <br />
+                                it's normally Nodejs is used in server-side development .
                             </div>
                         </div>
                     </div>
@@ -74,7 +86,7 @@ const Blogs = () => {
                         </h2>
                         <div id="collapseTwo5" className="accordion-collapse collapse" aria-labelledby="headingTwo5">
                             <div className="accordion-body py-4 px-5">
-                                <strong>JWT</strong> <br /> 
+                                <strong>JWT</strong> <br />
                                 <span className='text-lg font-semibold' >J</span> for <span>JSON</span> <span className='text-lg font-semibold' >W</span> for <span>Web</span> <span className='text-lg font-semibold' >T</span> for <span>Token</span>, <br />
 
                                 it's common use case is authorization purpose . <br />
@@ -86,7 +98,7 @@ const Blogs = () => {
                                 JWT has 3 deferent part <b>1.</b>HEADER  <b>2.</b>PayLoad  <b>3.</b> Signature. <br />
                                 <b>header</b> part is individual JSON , <b>Payload</b> contain our data , <b>Signature</b> it's a hashed string , it's help to decode the JWT <br />
 
-                                JWT's Signature code normally stored in server that's how server can recognize deferent users is valid or not  .  
+                                JWT's Signature code normally stored in server that's how server can recognize deferent users is valid or not  .
 
 
                             </div>
@@ -151,7 +163,7 @@ const Blogs = () => {
                     </div>
 
 
-                    <div className="accordion-item bg-white border border-gray-200">
+                    {/* <div className="accordion-item bg-white border border-gray-200">
                         <h2 className="accordion-header mb-0" id="headingThree4">
                             <button className="
               accordion-button
@@ -175,15 +187,10 @@ const Blogs = () => {
                         </h2>
                         <div id="collapseThree4" className="accordion-collapse collapse" aria-labelledby="headingThree4">
                             <div className="accordion-body py-4 px-5">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                until the collapse plugin adds the appropriate classes that we use to style each
-                                element. These classes control the overall appearance, as well as the showing and
-                                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                our default variables. It's also worth noting that just about any HTML can go within
-                                the <code>.accordion-body</code>, though the transition does limit overflow.
+                               
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

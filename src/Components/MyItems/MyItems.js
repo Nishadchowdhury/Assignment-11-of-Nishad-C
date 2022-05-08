@@ -3,6 +3,7 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import axiosSecret from '../../api/axiosSecret';
 import { auth } from '../../firebase.init';
 import SingleCard from '../Cards/SingleCard';
 
@@ -21,10 +22,8 @@ const MyItems = () => {
             const url = `http://localhost:5000/getCarByUser?email=${user?.email}`
 
             try {
-                const { data } = await axios.get(url, {
-                    headers: {
-                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                    }
+                const { data } = await axiosSecret.get(url, {
+                    
                 });
                 setCars(data);
             } catch (error) {
