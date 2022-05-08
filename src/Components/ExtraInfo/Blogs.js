@@ -39,7 +39,7 @@ const Blogs = () => {
                                 Difference between javascript and nodejs
                             </button>
                         </h2>
-                        <div id="collapseOne5" className="accordion-collapse collapse flex lg:flex-row flex-col " aria-labelledby="headingOne5">
+                        <div id="collapseOne5" className="accordion-collapse collapse show flex lg:flex-row flex-col " aria-labelledby="headingOne5">
                             <div className="accordion-body py-2 border-[1px] rounded-xl  px-3 m-2">
                                 <strong>JavaScript</strong> <br />
                                 js is a lightweight , interpreted scripting programming language .
@@ -161,36 +161,7 @@ const Blogs = () => {
                             </div>
                         </div>
                     </div>
-
-
-                    {/* <div className="accordion-item bg-white border border-gray-200">
-                        <h2 className="accordion-header mb-0" id="headingThree4">
-                            <button className="
-              accordion-button
-              collapsed
-              relative
-              flex
-              items-center
-              w-full
-              py-4
-              px-5
-              text-base text-gray-800 text-left
-              bg-white
-              border-0
-              rounded-none
-              transition
-              focus:outline-none
-            " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree4" aria-expanded="false"
-                                aria-controls="collapseThree4">
-                                Accordion Item #4
-                            </button>
-                        </h2>
-                        <div id="collapseThree4" className="accordion-collapse collapse" aria-labelledby="headingThree4">
-                            <div className="accordion-body py-4 px-5">
-                               
-                            </div>
-                        </div>
-                    </div> */}
+                    
                 </div>
             </div>
         </div>
