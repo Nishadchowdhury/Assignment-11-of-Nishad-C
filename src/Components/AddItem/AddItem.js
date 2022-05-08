@@ -13,9 +13,6 @@ const AddItem = () => {
 
     const [loading, setLoading] = useState(false);
 
-
-    console.log(loading);
-
     const handleImport = async e => {
         e.preventDefault();
 
@@ -33,9 +30,10 @@ const AddItem = () => {
         setLoading(true)
 
         try {
-            const data = await axios.post('http://localhost:5000/inventory', newData)
+            const data = await axios.post('https://hidden-shore-66811.herokuapp.com/inventory', newData)
                 .then(res => console.log(res))
             setLoading(false)
+            e.target.reset()
 
         }
         catch (e) {
@@ -45,13 +43,7 @@ const AddItem = () => {
 
 
     }
-
-    // if(loading)
-
-
-
-
-
+    
     return (
         <div style={{ backgroundImage: "url(" + 'https://i.ibb.co/KW3Vf0L/import-car.png' + ")" }} className='h-screen bg-cover' >
 

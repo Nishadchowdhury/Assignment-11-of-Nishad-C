@@ -9,7 +9,7 @@ import Spinner from '../Spinner/Spinner';
 const Header = () => {
 
     const [user, loading] = useAuthState(auth);
-    const [totalMyItems , setTotalMyItems ] = useState(0);
+    const [totalMyItems, setTotalMyItems] = useState(0);
 
     // console.log(totalMyItems);
 
@@ -23,7 +23,7 @@ const Header = () => {
     useEffect(() => {
         const getCars = async () => {
 
-            const url = `http://localhost:5000/productCountByUser?email=${user?.email}`
+            const url = `https://hidden-shore-66811.herokuapp.com/productCountByUser?email=${user?.email}`
             const { data } = await axios.get(url);
             setTotalMyItems(data);
         }
@@ -116,26 +116,26 @@ const Header = () => {
                     <div className="dropdown relative">
                         <div
                             className="text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4 dropdown-toggle hidden-arrow flex items-center"
-                           
+
                             id="dropdownMenuButton1"
                             role="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                           <img src="https://i.ibb.co/VMVWj9r/Image-3.png" className='w-10' alt="car img" />
+                            <img src="https://i.ibb.co/VMVWj9r/Image-3.png" className='w-10' alt="car img" />
                             <span
                                 className="text-white bg-red-700 absolute rounded-full text-xs -mt-5 ml-6 py-0 px-1.5">
 
-                                    {totalMyItems <= 99 && totalMyItems} {totalMyItems > 99 && "99+"}
+                                {totalMyItems <= 99 && totalMyItems} {totalMyItems > 99 && "99+"}
 
-                                    </span>
+                            </span>
                         </div>
 
                     </div>
                     <div className="dropdown relative ml-2 ">
                         <div
                             className="dropdown-toggle flex items-center hidden-arrow"
-                          
+
                             id="dropdownMenuButton2"
                             role="button"
                             data-bs-toggle="dropdown"

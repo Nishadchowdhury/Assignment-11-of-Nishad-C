@@ -11,7 +11,7 @@ const InventoryUpdate = () => {
     const { quantity } = car;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/inventory/${id}`)
+        fetch(`https://hidden-shore-66811.herokuapp.com/inventory/${id}`)
             .then(res => res.json())
             .then(data => setCar(data))
     }, [])
@@ -31,7 +31,7 @@ const InventoryUpdate = () => {
 
         console.log(newCar);
 
-        const url = (`http://localhost:5000/Update/${id}`);
+        const url = (`https://hidden-shore-66811.herokuapp.com/Update/${id}`);
 
         axios.put(url, newCar)
             .then(response => {
@@ -73,13 +73,13 @@ const InventoryUpdate = () => {
             const newCar = { quantity: newQuantity, ...rest };
 
 
-            const url = (`http://localhost:5000/Update/${id}`);
+            const url = (`https://hidden-shore-66811.herokuapp.com/Update/${id}`);
 
-             await axios.put(url, newCar)
-            .then(res => {
-                console.log(res);
-                toast('Delivery Complete')
-            })
+            await axios.put(url, newCar)
+                .then(res => {
+                    console.log(res);
+                    toast('Delivery Complete')
+                })
             setCar(newCar);
         }
         else {

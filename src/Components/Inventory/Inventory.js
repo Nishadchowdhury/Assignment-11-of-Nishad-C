@@ -13,7 +13,7 @@ const Inventory = () => {
 
     //getting add data
     useEffect(() => {
-        axios.get('http://localhost:5000/allCars')
+        axios.get('https://hidden-shore-66811.herokuapp.com/allCars')
             .then(resp => {
 
                 setAllData(resp.data);
@@ -30,7 +30,7 @@ const Inventory = () => {
             console.log("deleting ");
 
 
-            axios.delete(`http://localhost:5000/delete/${id}`)
+            axios.delete(`https://hidden-shore-66811.herokuapp.com/delete/${id}`)
                 .then(res => {
                     console.log(res);
                     const restData = allData.filter(data => data._id !== id)
@@ -56,8 +56,8 @@ const Inventory = () => {
                 >
                     <p className='flex items-center gap-2' ><span>Home</span> <img className='w-7 inline-block' src="https://i.ibb.co/k1m5pJK/Pngegg.png" alt="" /> </p>
                 </Link>
-                
-                  <Link
+
+                <Link
                     to='/AddItem'
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"

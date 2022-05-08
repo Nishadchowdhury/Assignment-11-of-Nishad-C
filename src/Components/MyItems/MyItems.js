@@ -19,11 +19,11 @@ const MyItems = () => {
     useEffect(() => {
         const getCars = async () => {
 
-            const url = `http://localhost:5000/getCarByUser?email=${user?.email}`
+            const url = `https://hidden-shore-66811.herokuapp.com/getCarByUser?email=${user?.email}`
 
             try {
                 const { data } = await axiosSecret.get(url, {
-                    
+
                 });
                 setCars(data);
             } catch (error) {
@@ -48,7 +48,7 @@ const MyItems = () => {
             console.log("deleting ");
 
 
-            axios.delete(`http://localhost:5000/delete/${id}`)
+            axios.delete(`https://hidden-shore-66811.herokuapp.com/delete/${id}`)
                 .then(res => {
                     console.log(res);
                     const restCar = myCars.filter(car => car._id != id);

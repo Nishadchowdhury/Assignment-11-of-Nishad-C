@@ -9,7 +9,7 @@ const useJwtToken = user => {
 
             const email = user.email;
             if (email) {
-                const { data } = await axios.post('http://localhost:5000/login', { email });
+                const { data } = await axios.post('https://hidden-shore-66811.herokuapp.com/login', { email });
                 setToken(data.accessToken)
                 localStorage.setItem('accessToken', data.accessToken);
             }

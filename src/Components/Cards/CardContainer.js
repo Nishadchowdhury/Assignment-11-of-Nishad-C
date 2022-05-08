@@ -7,7 +7,7 @@ const CardContainer = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/allCarsHomePage')
+        fetch('https://hidden-shore-66811.herokuapp.com/allCarsHomePage')
             .then(res => res.json())
             .then(data => {
                 setCards(data)
