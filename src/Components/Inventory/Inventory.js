@@ -107,7 +107,7 @@ const Inventory = () => {
                                                 <td className="border-r-2  lg:px-2 lg:w-7 lg:text-sm text-xs text-gray-900 font-light ">
                                                     $ {car.price}
                                                 </td>
-                                                <td className={`border-r-2 w-2 text-sm text-center text-gray-900 font-light ${car.quantity === 0 && "text-red-500 font-extrabold"} `}>
+                                                <td className={`border-r-2 w-2 text-sm text-center font-light ${car.quantity === 0 ? "text-red-600 font-extrabold" : 'text-gray-900'} `}>
                                                     {car.quantity}
                                                 </td>
                                                 <td className="border-r-2 text-sm lg:block hidden text-gray-900 font-light lg:px-6 px-2 py-4 ">

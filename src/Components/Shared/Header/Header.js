@@ -13,6 +13,7 @@ const Header = () => {
 
     // console.log(totalMyItems);
 
+    console.log(user);
 
     const params = useLocation().pathname;
 

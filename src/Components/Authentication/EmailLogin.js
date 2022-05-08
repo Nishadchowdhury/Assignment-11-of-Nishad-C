@@ -5,6 +5,7 @@ import { auth } from '../../firebase.init';
 import SignWithSocial from './SignWithSocial';
 import { toast } from 'react-toastify';
 import Spinner from '../Shared/Spinner/Spinner';
+import axios from 'axios';
 
 const EmailLogin = () => {
 
@@ -36,18 +37,21 @@ const EmailLogin = () => {
 
     const [user] = useAuthState(auth);
 
-    if (user) {
-        navigate(from, { replace: true })
-    }
+    // if (user) {
+    // }
 
-    const handleSubmitLogin = event => {
+    const handleSubmitLogin = async event => {
         event.preventDefault();
 
         const password = event.target.password.value;
         const email = event.target.email.value;
 
 
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+
+        const { data } = await axios.post('http://localhost:5000/login', {email});
+        localStorage.setItem('accessToken', data.accessToken)
+        navigate(from, { replace: true })
 
     }
 
@@ -57,7 +61,7 @@ const EmailLogin = () => {
         if (email) {
 
             await sendPasswordResetEmail(email)
-            
+
             toast('Sent reset email to' + email);
             setError('');
         } else {
@@ -77,9 +81,9 @@ const EmailLogin = () => {
 
     return (
 
-        <div>
+        <div className='h-screen' >
             <section className="h-screen">
-                <div className="container px-6 py-12 h-full">
+                <div className="container px-6 py-12 h-full ">
                     <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
                         <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" alt=''
@@ -127,7 +131,7 @@ const EmailLogin = () => {
 
                                         {/* <!--  Submit button -->  */}
 
-                                    { error && <p className='text-red-500 mb-2 text-center' > {error} </p>}
+                                        {error && <p className='text-red-500 mb-2 text-center' > {error} </p>}
                                         <input
                                             type="submit"
                                             value={'Sign In'}

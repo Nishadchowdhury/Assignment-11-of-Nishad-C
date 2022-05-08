@@ -69,17 +69,26 @@ const Blogs = () => {
               focus:outline-none
             " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo5" aria-expanded="false"
                                 aria-controls="collapseTwo5">
-                                Accordion Item #2
+                                What is the purpose od JWT ?
                             </button>
                         </h2>
                         <div id="collapseTwo5" className="accordion-collapse collapse" aria-labelledby="headingTwo5">
                             <div className="accordion-body py-4 px-5">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                until the collapse plugin adds the appropriate classes that we use to style each
-                                element. These classes control the overall appearance, as well as the showing and
-                                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                our default variables. It's also worth noting that just about any HTML can go within
-                                the <code>.accordion-body</code>, though the transition does limit overflow.
+                                <strong>JWT</strong> <br /> 
+                                <span className='text-lg font-semibold' >J</span> for <span>JSON</span> <span className='text-lg font-semibold' >W</span> for <span>Web</span> <span className='text-lg font-semibold' >T</span> for <span>Token</span>, <br />
+
+                                it's common use case is authorization purpose . <br />
+                                it's made for securely communicate two different party . <br />
+                                we know http stateless , that's why server can't define user each and every situation . <br />
+                                so that's why JWT convert user's data into a JSON with JWT sign , it can be stored in cookie or localStorage. <br />
+                                so every time when client request something with JWT , server can easily recognize that user . <br />
+                                JWT not look like a normal JSON , it's encrypted from of JSON .
+                                JWT has 3 deferent part <b>1.</b>HEADER  <b>2.</b>PayLoad  <b>3.</b> Signature. <br />
+                                <b>header</b> part is individual JSON , <b>Payload</b> contain our data , <b>Signature</b> it's a hashed string , it's help to decode the JWT <br />
+
+                                JWT's Signature code normally stored in server that's how server can recognize deferent users is valid or not  .  
+
+
                             </div>
                         </div>
                     </div>
@@ -118,6 +127,8 @@ const Blogs = () => {
                                 multiple table can be connected by id , there is meany table connected together that's why it's call relational database . <br />
                                 SQl database based on rows and  columns , first row of db is about key of database and rest of row contains values .
 
+                                at last , SQL database is table base database .
+
 
                             </div>
                             <div className='flex items-center justify-center text-blue-500 font-bold' >vs</div>
@@ -127,16 +138,13 @@ const Blogs = () => {
                                 for example , we stored data as table Structured in SQl , <br />
                                 but we stored data in noSQL as an object . <br />
                                 but we can do Read ,write , update and etc , but some different way . <br />
-                                 like a json file or js object .
+                                like a json file or js object .
                                 it's work on key value pair , means data stored as value of the data's name call key . we can stored user's post and comments in a array of objects . <br />
 
                                 at last we can store all objects of data in an array . <br />
 
-                                main thinking of noSQL is , store each and every data of user in a single place .    
-
-
-
-
+                                main thinking of noSQL is , store each and every data of user in a single place .
+                                and noSQL database is document base database .
 
                             </div>
                         </div>
