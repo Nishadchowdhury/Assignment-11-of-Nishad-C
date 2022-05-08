@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import { auth } from '../../firebase.init';
 import Spinner from '../Shared/Spinner/Spinner';
 
@@ -33,7 +34,8 @@ const AddItem = () => {
             const data = await axios.post('https://hidden-shore-66811.herokuapp.com/inventory', newData)
                 .then(res => console.log(res))
             setLoading(false)
-            e.target.reset()
+            toast('add car Successfully')
+            e.target.reset();
 
         }
         catch (e) {

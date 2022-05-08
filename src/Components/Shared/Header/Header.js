@@ -3,6 +3,7 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import axiosSecret from '../../../api/axiosSecret';
 import { auth } from '../../../firebase.init';
 import Spinner from '../Spinner/Spinner';
 
@@ -13,7 +14,6 @@ const Header = () => {
 
     // console.log(totalMyItems);
 
-    console.log(user);
 
     const params = useLocation().pathname;
 
@@ -21,20 +21,30 @@ const Header = () => {
     console.log(params);
 
     useEffect(() => {
+
         const getCars = async () => {
 
             const url = `https://hidden-shore-66811.herokuapp.com/productCountByUser?email=${user?.email}`
-            const { data } = await axios.get(url);
-            setTotalMyItems(data);
+
+            try {
+                const { data } = await axiosSecret.get(url, {
+
+                });
+                setTotalMyItems(data);
+            } catch (error) {
+                // console.log(error.message);
+               
+            }
+
         }
         getCars();
 
-    }, [user]);
+    }, [loading]);
 
 
 
     return (
-        <nav
+        <nav  
             className={`relative w-full flex flex-wrap items-center lg:justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light ${(params === "/inventory" || params === "/blogs") ? 'hidden' : 'none'} `}
         >
             <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">

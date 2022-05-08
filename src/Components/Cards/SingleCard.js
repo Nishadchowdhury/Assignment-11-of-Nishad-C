@@ -29,10 +29,9 @@ const SingleCard = ({ card, workFor, handler }) => {
         }
 
     }, [about])
+        
 
-    const Background = picture;
-
-    console.log(handler);
+    console.log(workFor);
 
 
 

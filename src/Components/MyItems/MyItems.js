@@ -6,12 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import axiosSecret from '../../api/axiosSecret';
 import { auth } from '../../firebase.init';
 import SingleCard from '../Cards/SingleCard';
+import Spinner from '../Shared/Spinner/Spinner';
 
 const MyItems = () => {
 
     const [myCars, setCars] = useState([]);
 
     const [user] = useAuthState(auth);
+    const [loading, setLoading] = useState(false);
+
 
     const navigate = useNavigate();
 
@@ -22,10 +25,12 @@ const MyItems = () => {
             const url = `https://hidden-shore-66811.herokuapp.com/getCarByUser?email=${user?.email}`
 
             try {
+                setLoading(true)
                 const { data } = await axiosSecret.get(url, {
 
                 });
                 setCars(data);
+                setLoading(false);
             } catch (error) {
                 console.log(error.message);
                 if (error.response.status === 403 || error.response.status === 401) {
@@ -65,9 +70,7 @@ const MyItems = () => {
 
 
 
-            {
-                myCars.map(car => <SingleCard workFor={'myCars'} key={car._id} card={car} handler={HandleDeleteItem} ></SingleCard>)
-            }
+            { loading ? <Spinner/> : myCars.map(car => <SingleCard workFor={'myCars'} key={car._id} card={car} handler={HandleDeleteItem} ></SingleCard>) }
 
         </div>
     );

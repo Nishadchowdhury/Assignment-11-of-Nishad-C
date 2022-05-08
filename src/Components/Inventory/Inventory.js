@@ -1,22 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from '../Shared/Spinner/Spinner';
 
 const Inventory = () => {
 
     const [allData, setAllData] = useState([]);
 
-    const w = window.innerWidth < 480;
-    console.log(window.focus());
+    const [loading , setLoading] = useState(false);
 
-    console.log(w);
 
     //getting add data
     useEffect(() => {
+        setLoading(true)
         axios.get('https://hidden-shore-66811.herokuapp.com/allCars')
             .then(resp => {
 
                 setAllData(resp.data);
+                setLoading(false)
             });
     }, []);
 
@@ -68,7 +69,7 @@ const Inventory = () => {
             </div>
 
             <div className="flex flex-col">
-                <div className="lg:mx-2">
+               { loading ? <Spinner/> :  <div className="lg:mx-2">
                     <div className="py-2 inline-block min-w-full sm:px-6">
                         <div className="overflow-hidden">
                             <table className="min-w-full"  >
@@ -142,7 +143,7 @@ const Inventory = () => {
                             </table>
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
 
 

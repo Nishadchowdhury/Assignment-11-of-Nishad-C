@@ -3,17 +3,24 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SingleCard from '../Cards/SingleCard';
 import { toast } from 'react-toastify';
+import Spinner from '../Shared/Spinner/Spinner';
 
 const InventoryUpdate = () => {
     const id = useParams().id;
     // console.log(useParams());
     const [car, setCar] = useState({});
     const { quantity } = car;
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
+        setLoading(true)
         fetch(`https://hidden-shore-66811.herokuapp.com/inventory/${id}`)
             .then(res => res.json())
-            .then(data => setCar(data))
+            .then(data => {
+                setLoading(false)
+                setCar(data)
+            })
     }, [])
 
 
@@ -30,14 +37,15 @@ const InventoryUpdate = () => {
         const newCar = { quantity: newQuantity, ...rest };
 
         console.log(newCar);
-
         const url = (`https://hidden-shore-66811.herokuapp.com/Update/${id}`);
-
+        
+        
+        setLoading(true)
         axios.put(url, newCar)
             .then(response => {
 
                 console.log(response);
-
+                setLoading(false)
                 if (response.status === 200) {
                     toast(`${inputValue} Add Successfully`, {
                         position: "top-center",
@@ -74,12 +82,14 @@ const InventoryUpdate = () => {
 
 
             const url = (`https://hidden-shore-66811.herokuapp.com/Update/${id}`);
-
+            setLoading(true)
             await axios.put(url, newCar)
                 .then(res => {
                     console.log(res);
                     toast('Delivery Complete')
+                    setLoading(false)
                 })
+
             setCar(newCar);
         }
         else {
@@ -154,7 +164,7 @@ const InventoryUpdate = () => {
 
             </div>
 
-            <div className='lg:mb-0 mb-5' ><SingleCard card={car} workhtmlFor={'update'} handler={handleDeliver}  ></SingleCard></div>
+            <div className='lg:mb-0 mb-5 ' > {loading ? <Spinner></Spinner> : <SingleCard card={car} workFor={'update'} handler={handleDeliver}  ></SingleCard>}</div>
 
 
         </div>
