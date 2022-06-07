@@ -1,24 +1,26 @@
+import AOS from 'aos';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleCard = ({ card, workFor, handler }) => {
+const SingleCard = ({ card, workFor, handler, i }) => {
 
     const blue = 'blue';
     const red = 'red';
 
     const [aboutMod, setAboutMod] = useState('');
 
-    const [handllerValue , setHandllerValue ] = useState('');
+    const [handllerValue, setHandllerValue] = useState('');
 
-    useEffect( ()=>{
-        if(workFor === 'myCars'){
+    useEffect(() => {
+        if (workFor === 'myCars') {
             setHandllerValue(_id);
-        }else{
+        } else {
             setHandllerValue(1)
         }
-    } ,[workFor])
+    }, [workFor])
 
     const { name, picture, about, price, quantity, supplierName, _id } = card;
+
 
     useEffect(() => {
 
@@ -29,14 +31,23 @@ const SingleCard = ({ card, workFor, handler }) => {
         }
 
     }, [about])
-        
 
-    console.log(workFor);
 
+    // console.log(workFor);
+
+    // console.log(i + 1);
+
+    useEffect(() => {
+        AOS.init({ duration: 700 });
+    }, []);
 
 
     return (
-        <div className="flex justify-center " >
+        <div
+            data-aos="zoom-in"
+            data-aos-delay={`${i + 1}00`}
+            data-aos-duration="1000"
+            className="flex justify-center " >
             <div className={`rounded-lg shadow-lg bg-white max-w-sm border-2 p-1 relative ${workFor === 'home' && "h-[500px] "} `} >
 
                 {quantity === 0 && <div className='absolute left-1 w-24 text-center rounded-tl-lg bg-red-600 py-1 px-1 text-lg text-white ' >Sold Out</div>

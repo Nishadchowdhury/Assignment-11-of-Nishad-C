@@ -14,11 +14,12 @@ import AddItem from "./Components/AddItem/AddItem";
 import RequireAuth from "./Components/Authentication/RequireAuth/RequireAuth";
 import MyItems from "./Components/MyItems/MyItems";
 import Blogs from "./Components/ExtraInfo/Blogs";
+import 'aos/dist/aos.css';
 
 
 function App() {
   return (
-    <>
+    <div className="max-w-[100rem] mx-auto">
       <Header />
 
       <Routes>
@@ -69,9 +70,9 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Footer />
+      {/* <Footer /> */}
 
-    </>
+    </div>
   );
 }
 
